@@ -34,7 +34,7 @@ jobs:
           args: -- --check
 
   test:
-    name: ${{ matrix.os }}
+    name: Tests - ${{ matrix.os }}
     needs: [style]
     runs-on: ${{ matrix.os }}
 
