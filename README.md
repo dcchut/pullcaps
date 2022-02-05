@@ -9,8 +9,8 @@ A convenient, opinionated, asynchronous client for the [PushShift API](https://p
 
 # Example
 
-This library is built on top of [Tokio](https://tokio.rs/) and [Futures](https://rust-lang.github.io/futures-rs/).
-An example `Cargo.toml` could be:
+This library is built on top of [Tokio](https://tokio.rs/), and currently produces streams
+from the [futures](https://rust-lang.github.io/futures-rs/) crate.  An example `Cargo.toml` could be:
 
 ```toml
 [dependencies]
@@ -19,7 +19,7 @@ pullcaps = { version = "0.1" }
 tokio = { version = "1", features = ["full"] }
 ```
 
-A small example usage is then:
+A small example is then:
 
 ```rust
 use pullcaps::{Client, Filter};
