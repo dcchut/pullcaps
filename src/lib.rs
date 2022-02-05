@@ -31,7 +31,7 @@
 //! ## Getting posts in a given subreddit
 //!
 //! The following example shows how to get posts from a given subreddit - in particular
-//! we utilize [`StreamExt::take`] to limit ourselves to the five most recent posts
+//! we utilize [`futures::StreamExt::take`] to limit ourselves to the five most recent posts
 //! in the subreddit.
 //!
 //! ```rust,no_run
