@@ -27,10 +27,10 @@ use futures::StreamExt;
 
 #[tokio::main]
 async fn main() {
-  let client = Client::new().await;
+  let client = Client::new();
     
   // Get the five most recent posts in /r/askreddit
-  let mut posts = client.get_posts(Filter::new().subreddit("askreddit")).take(5);
+  let mut posts = client.get_posts(Filter::new().subreddit("askreddit")).await.take(5);
   while let Some(post) = posts.next().await {
     println!("url: {}", post.content_url);
   }

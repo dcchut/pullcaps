@@ -1,6 +1,6 @@
 [package]
 name = "pullcaps"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["Robert Usher <266585+dcchut@users.noreply.github.com>"]
 edition = "2021"
 description = "An asynchronous client for the PushShift API"
