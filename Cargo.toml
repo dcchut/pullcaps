@@ -5,7 +5,7 @@ authors = ["Robert Usher <266585+dcchut@users.noreply.github.com>"]
 edition = "2021"
 description = "An asynchronous client for the PushShift API"
 readme = "README.md"
-license = "MIT OR Apache-2.0"
+license = "MIT/Apache-2.0"
 repository = "https://github.com/dcchut/pullcaps"
 
 [dependencies.serde]
