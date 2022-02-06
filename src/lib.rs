@@ -14,11 +14,10 @@
 //!
 //! # #[tokio::main]
 //! # async fn main() {
-//! let client = Client::new().await;
+//! let client = Client::new();
 //! let filter = Filter::new().author("reddit");
 //!
-//! let mut comments = client.get_comments(filter);
-//! # let mut comments = comments.take(1);
+//! let mut comments = client.get_comments(filter).await;
 //! while let Some(comment) = comments.next().await {
 //!     println!("text: {}", comment.body);
 //! }
@@ -40,10 +39,10 @@
 //!
 //! # #[tokio::main]
 //! # async fn main() {
-//! let client = Client::new().await;
+//! let client = Client::new();
 //! let filter = Filter::new().subreddit("askreddit");
 //!
-//! let mut posts = client.get_posts(filter).take(5);
+//! let mut posts = client.get_posts(filter).await.take(5);
 //! while let Some(post) = posts.next().await {
 //!     if let Some(text) = post.self_text {
 //!         println!("text: {}", text);
@@ -58,4 +57,4 @@ mod client;
 mod filter;
 
 pub use client::Client;
-pub use filter::Filter;
+pub use filter::{Filter, SortType};

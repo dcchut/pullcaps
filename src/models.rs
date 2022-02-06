@@ -1,3 +1,4 @@
+//! The data model underlying the PushShift API.
 use chrono::serde::ts_seconds;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
@@ -6,35 +7,7 @@ pub(crate) trait AsAttrs {
     fn attrs(&self) -> &Attrs;
 }
 
-#[derive(Clone, Debug, Deserialize)]
-pub enum Content {
-    Comment(Comment),
-    Post(Post),
-}
-
-impl Content {
-    pub fn attrs(&self) -> &Attrs {
-        match self {
-            Content::Comment(comment) => &comment.attrs,
-            Content::Post(post) => &post.attrs,
-        }
-    }
-
-    pub fn as_comment(&self) -> Option<&Comment> {
-        match self {
-            Content::Comment(comment) => Some(comment),
-            _ => None,
-        }
-    }
-
-    pub fn as_post(&self) -> Option<&Post> {
-        match self {
-            Content::Post(post) => Some(post),
-            _ => None,
-        }
-    }
-}
-
+/// Common attributes between  [`Post`]'s and [`Comment`]'s.
 #[derive(Clone, Debug, Deserialize)]
 pub struct Attrs {
     /// A unique ID identify the content.
@@ -51,6 +24,7 @@ pub struct Attrs {
     pub date: DateTime<Utc>,
 }
 
+/// A single comment on a reddit [`Post`].
 #[derive(Clone, Debug, Deserialize)]
 pub struct Comment {
     #[serde(flatten)]
@@ -62,7 +36,6 @@ pub struct Comment {
     #[serde(flatten)]
     pub attrs: Attrs,
 
-    // CommentContent or something?
     pub body: String,
     pub parent_id: String,
 }
@@ -73,6 +46,7 @@ impl AsAttrs for Comment {
     }
 }
 
+/// A single reddit post.
 #[derive(Clone, Debug, Deserialize)]
 pub struct Post {
     #[serde(flatten)]
@@ -103,6 +77,7 @@ impl AsAttrs for Post {
     }
 }
 
+/// The author of a [`Post`] or [`Comment`].
 #[derive(Clone, Debug, Deserialize)]
 pub struct Author {
     #[serde(rename = "author_fullname")]
@@ -111,6 +86,7 @@ pub struct Author {
     pub name: String,
 }
 
+/// The subreddit associated to a [`Post`] or [`Comment`]
 #[derive(Clone, Debug, Deserialize)]
 pub struct SubReddit {
     #[serde(rename = "subreddit_id")]
