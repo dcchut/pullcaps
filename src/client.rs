@@ -52,7 +52,7 @@ struct PushShiftQueryParams<'a> {
 /// An opinionated asynchronous `Client` to make requests to the PushShift API.
 ///
 /// This client is built on top of a [`reqwest::Client`], so as per that documentation
-/// is is advised you create a single one and **reuse** it.  In adition, `Client` is both
+/// it is advised you create a single one and **reuse** it.  In addition, `Client` is both
 /// [`Send`] and [`Sync`] so you don't need to wrap it to reuse it.
 #[derive(Clone)]
 pub struct Client {
